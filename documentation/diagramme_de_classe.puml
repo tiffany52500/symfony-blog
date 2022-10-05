@@ -1,0 +1,34 @@
+@startuml
+
+class Article {
+    - id : int
+    - titre : string
+    - contenu : text
+    - createdAt : datetime
+    - slug : string
+}
+
+class Categorie {
+    - id : int
+    - titre : string
+    - slug : string
+}
+
+class Auteur {
+    - id : int
+    - prénom : string
+    - nom : string
+    - pseudo : string
+}
+
+class Commentaire {
+    - id : int
+    - contenu : text
+    - createdAt : datetime
+}
+
+Article "0..*" -- "0..1" Categorie
+Commentaire "0..*" -- "1..1" Article
+Commentaire "0..*" -- "0..1" Auteur
+
+@enduml

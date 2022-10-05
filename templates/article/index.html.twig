@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des articles{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="text-primary me-3">Liste des articles</h2>
+        <a class="btn btn-outline-primary" href="{{ path('app_articles_nouveau') }}">Ajouter un nouvel article</a>
+    </div>
+
+    <ol class="list-group mb-3">
+        {% for article in articles %}
+            <a class="list-group-item d-flex justify-content-between align-items-start" href="{{ path('app_article_slug', {'slug': article.slug}) }}">
+                <div class="ms-2 me-auto">
+                    {{ article.titre }}
+                </div>
+                <span class="badge bg-primary rounded-pill">{{ article.createdAt | date('d/m/Y') }}</span>
+            </a>
+        {% endfor %}
+    </ol>
+
+    <div class="navigation d-flex justify-content-center">
+        {{ knp_pagination_render(articles) }}
+    </div>
+
+{% endblock %}

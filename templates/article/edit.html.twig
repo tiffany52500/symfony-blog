@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit article{% endblock %}
+
+{% block body %}
+    <div class="h2 pb-2 text-primary border-bottom border-dark">
+        Modifier un article
+    </div>
+
+    {{ form_start(formArticle) }}
+        {{ form_row(formArticle.titre, {
+            'label' : "Titre de l'article",
+            'label_attr' : {
+                'class' : 'text-warning'
+            },
+            'attr' : {
+                'placeholder' : "Veuillez saisir le titre de l'article"
+            },
+            'help' : "Le titre doit contenir au mois 5 caractères"
+        }) }}
+
+            {{ form_label(formArticle.contenu, "Contenu de l'article") }}
+            {{ form_widget(formArticle.contenu, {
+                'attr' : {
+                    'placeholder' : "Veuillez saisir le contenu de l'article"
+                }
+            }) }}
+            {{ form_help(formArticle.contenu, {
+                'help' : "Le contenu de l'article doit contenir au moins 100 caractères"
+            }) }}
+
+        {{ form_row(formArticle.categorie) }}
+
+
+    <input type="submit" class="btn btn-primary mt-2" value="Ajouter">
+    {{ form_end(formArticle) }}
+
+
+{% endblock %}
+

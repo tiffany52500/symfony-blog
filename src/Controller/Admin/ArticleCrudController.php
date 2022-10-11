@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -46,7 +47,8 @@ class ArticleCrudController extends AbstractCrudController
                                                         ->setSortable(false),
             AssociationField::new('categorie')->setRequired(false),
             DateTimeField::new('createdAt', 'Date de création')->hideOnForm(),
-            TextField::new('slug')->hideOnForm()
+            TextField::new('slug')->hideOnForm(),
+            BooleanField::new('estPublie'),
         ];
     }
     // redéfinir la méthode persistEntity qui va être appelée lors de la création de l'article en BDD

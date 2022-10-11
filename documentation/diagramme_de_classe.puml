@@ -6,6 +6,7 @@ class Article {
     - contenu : text
     - createdAt : datetime
     - slug : string
+    - estPublie : bool
 }
 
 class Categorie {

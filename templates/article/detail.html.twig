@@ -11,6 +11,7 @@
                 <a href="#"><span class="badge text-bg-secondary fs-5"> catégorie : aucune catégorie</span></a>
             {% endif %}
             <span class="badge rounded-pill text-bg-primary mb-3"> crée le : {{ article.createdAt.format('d/m/Y') }}</span>
+            <a href="{{ path('app_articles_edit', {'slug': article.slug}) }}" class="btn btn-outline-primary">modifier</a>
         </div>
         <div class="card-body">
             <h5 class="card-title text-primary"> {{ article.titre }}</h5>
@@ -35,7 +36,7 @@
                                     Auteur anonyme
                                 {% endif %}
                             </h5>
-                            <p class="card-text">{{ commentaire.contenu }}</p>
+                            <p class="card-text">{{ commentaire.contenu | raw}}</p>
                             <span class="badge rounded-pill text-bg-primary mb-3"> publié le : {{ commentaire.createdAt.format('d/m/Y') }}</span>
                         </div>
                     </div>
@@ -43,4 +44,13 @@
             {% endfor %}
         </div>
     {% endif %}
+
+    <div class="mb-5">
+        {{ form_start(formCommentaire) }}
+        {{ form_row(formCommentaire.auteur) }}
+        {{ form_row(formCommentaire.contenu) }}
+        {{ form_widget(formCommentaire.article, {'value' : article.id} ) }}
+        <input type="submit" class="btn btn-primary mt-2" value="Valider">
+        {{ form_end(formCommentaire) }}
+    </div>
 {% endblock %}

@@ -34,12 +34,14 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
+        yield MenuItem::linkToUrl("Retour au blog", "fa fa-hand-point-left", $this->generateUrl("app_accueil"));
+        yield MenuItem::section();
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::section("Articles");
         // crée un sous-menu pour les articles
         yield MenuItem::subMenu("Actions","fa-solid fa-bars")
             ->setSubItems([
-                MenuItem::linkToCrud("Lister articles", "fa-solid fa-eye", Article::class)
+                MenuItem::linkToCrud("Liste des articles", "fa fa-eye", Article::class)
                     ->setAction(Crud::PAGE_INDEX)
                     ->setDefaultSort(['createdAt' => 'DESC']),
 
@@ -52,7 +54,7 @@ class DashboardController extends AbstractDashboardController
         // crée un sous-menu pour les catégories
         yield MenuItem::subMenu("Catégories","fa-solid fa-bars")
             ->setSubItems([
-                MenuItem::linkToCrud("Lister catégories", "fa-solid fa-eye", Categorie::class)
+                MenuItem::linkToCrud("Liste des catégories", "fa fa-eye", Categorie::class)
                     ->setAction(Crud::PAGE_INDEX),
 
                 MenuItem::linkToCrud("Ajouter catégorie", "fa-regular fa-plus", Categorie::class)
